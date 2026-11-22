@@ -139,6 +139,35 @@ _P_DRIVE_ABOUT = [qp("fields", required=True)]
 DRIVE_DOC_MIME = "application/vnd.google-apps.document"
 DRIVE_FOLDER_MIME = "application/vnd.google-apps.folder"
 
+# Capabilities present on every real Drive file (35 keys as of 2026-10-25).
+# The 12 keys Backlot already carried are kept; the 23 missing ones are added
+# here with their dominant default so callers see the full shape.
+_CAPABILITIES_EXTRA: dict[str, bool] = {
+    "canAcceptOwnership": False,
+    "canAccessViaGenAi": True,
+    "canAddMyDriveParent": False,
+    "canChangeCopyRequiresWriterPermission": True,
+    "canChangeItemDownloadRestriction": True,
+    "canChangeSecurityUpdateEnabled": False,
+    "canChangeViewersCanCopyContent": True,
+    "canDisableInheritedPermissions": False,
+    "canEnableInheritedPermissions": True,
+    "canModifyContentRestriction": True,
+    "canModifyEditorContentRestriction": True,
+    "canModifyLabels": False,
+    "canModifyOwnerContentRestriction": True,
+    "canMoveChildrenWithinDrive": False,
+    "canMoveItemIntoTeamDrive": True,
+    "canMoveItemOutOfDrive": True,
+    "canMoveItemWithinDrive": True,
+    "canReadLabels": False,
+    "canRemoveChildren": False,
+    "canRemoveContentRestriction": False,
+    "canRemoveMyDriveParent": True,
+    "canStartApproval": False,
+    "canUntrash": True,
+}
+
 # --- Google-style multipart/mixed batch (google-api-python-client BatchHttpRequest) -------------
 # The client POSTs one multipart/mixed body to a single batch_uri; each part is an application/http
 # sub-request (which carries, or inherits from the outer request, its own Authorization). Google
